@@ -2515,6 +2515,13 @@ class parser {
 
     if (this->peek().type == token_type::kw_else) {
       this->skip();
+      if (this->peek().type == token_type::semicolon) {
+        source_code_span semicolon = this->peek().span();
+        this->error_reporter_->report(error_redundant_semicolon_after_else{
+          .semicolon = source_code_span(
+            semicolon.begin(), semicolon.end()),
+        });
+      }
       parse_and_visit_body();
     }
   }

@@ -1139,6 +1139,12 @@
       { source_code_span continue_statement; },                                \
       .error(QLJS_TRANSLATABLE("continue can only be used inside of a loop"),  \
              continue_statement))                                              \
+                                                                               \
+  QLJS_ERROR_TYPE(                                                             \
+      error_redundant_semicolon_after_else, "E202",                            \
+      { source_code_span semicolon; },                                         \
+      .warning(QLJS_TRANSLATABLE("redundant semicolon after else"),            \
+              semicolon))                                                      \
   /* END */
 
 namespace quick_lint_js {
